@@ -13,11 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.ui.theme
 
-import androidx.compose.ui.graphics.Color
+package com.example.androiddevchallenge.model
 
-val purple200 = Color(0xFFf8fdff)
-val purple500 = Color(0xFF9499b7)
-val purple700 = Color(0xFFc5cae9)
-val teal200 = Color(0xFF90a4ae)
+import androidx.compose.runtime.Immutable
+
+@Immutable
+data class Cat(
+    val id: Int,
+    val name: String,
+    val breed: String,
+    val age: String,
+    val sex: String,
+    val hair: String,
+    val imageRes: Int
+)

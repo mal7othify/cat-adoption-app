@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.ui.theme
 
-import androidx.compose.ui.graphics.Color
+package com.example.androiddevchallenge.navigation
 
-val purple200 = Color(0xFFf8fdff)
-val purple500 = Color(0xFF9499b7)
-val purple700 = Color(0xFFc5cae9)
-val teal200 = Color(0xFF90a4ae)
+sealed class Screen(val route: String) {
+    object AllCats : Screen("allCats")
+    object CatDetail : Screen("catDetail")
+}
