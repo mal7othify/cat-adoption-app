@@ -1,24 +1,30 @@
-# Put title of your app here
+# 🐱 Cat Adoption App 🐱
 
-<!--- Replace <OWNER> with your Github Username and <REPOSITORY> with the name of your repository. -->
-<!--- You can find both of these in the url bar when you open your repository in github. -->
 ![Workflow result](https://github.com/mal7othify/cat-adoption-app/workflows/Check/badge.svg)
 
-
 ## :scroll: Description
-<!--- Describe your app in one or two sentences -->
 
+This is an adoption app which displays a list of availabe cats and their corresponding information
+for adopters.
+
+#### Tools:
+
+* Jetpack Compose.
+* Jetpack Compose Navigation.
 
 ## :bulb: Motivation and Context
-<!--- Optionally point readers to interesting parts of your submission. -->
-<!--- What are you especially proud of? -->
 
+I chose a cat application because I'm a cat person myself and I have two of them.
+
+I'm very proud that this app took me less than a day to make! It tells a lot about how easy it is to
+adapt to Jetpack Compose.
 
 ## :camera_flash: Screenshots
-<!-- You can add more screenshots here if you like -->
-<img src="/results/screenshot_1.png" width="260">&emsp;<img src="/results/screenshot_2.png" width="260">
+
+<img src="/results/screenshot_1.png" width="260">&emsp;<img src="/results/screenshot_2.png" width="260">&emsp;<img src="/results/overview.gif" width="260">
 
 ## License
+
 ```
 Copyright 2020 The Android Open Source Project
 

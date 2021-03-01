@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.example.androiddevchallenge.ui.catInfo
 
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.ScrollableState
-import androidx.compose.foundation.gestures.scrollable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -43,13 +44,9 @@ fun CatDetail(
                 modifier = Modifier.fillMaxWidth().padding(bottom = 20.dp)
             )
             Row(
+                horizontalArrangement = Arrangement.SpaceEvenly,
                 modifier = Modifier.padding(bottom = 20.dp)
                     .fillMaxWidth()
-                    .scrollable(
-                        enabled = true,
-                        state = ScrollableState { 0.5f },
-                        orientation = Orientation.Horizontal
-                    )
             ) {
                 CatDetailShips("Breed", cat.breed)
                 CatDetailShips("Age", cat.age)

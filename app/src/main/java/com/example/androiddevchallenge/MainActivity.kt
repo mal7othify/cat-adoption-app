@@ -18,11 +18,17 @@ package com.example.androiddevchallenge
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.material.MaterialTheme.colors
+import androidx.compose.ui.graphics.toArgb
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navArgument
+import androidx.navigation.compose.rememberNavController
+import com.example.androiddevchallenge.model.data.Cats
+import com.example.androiddevchallenge.navigation.Screen
+import com.example.androiddevchallenge.ui.catInfo.CatDetail
+import com.example.androiddevchallenge.ui.cats.AllCats
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {
@@ -30,32 +36,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyTheme {
-                MyApp()
+                window.statusBarColor = colors.primaryVariant.toArgb()
+                val navController = rememberNavController()
+                NavHost(navController, startDestination = Screen.AllCats.route) {
+                    composable(Screen.AllCats.route) { AllCats(Cats, navController) }
+                    composable(
+                        "${Screen.CatDetail.route}/{catId}",
+                        arguments = listOf(navArgument("catId") { type = NavType.IntType })
+                    ) {
+                        CatDetail(navController, it.arguments?.getInt("catId") ?: 1)
+                    }
+                }
             }
         }
-    }
-}
-
-// Start building your app here!
-@Composable
-fun MyApp() {
-    Surface(color = MaterialTheme.colors.background) {
-        Text(text = "Ready... Set... GO!")
-    }
-}
-
-@Preview("Light Theme", widthDp = 360, heightDp = 640)
-@Composable
-fun LightPreview() {
-    MyTheme {
-        MyApp()
-    }
-}
-
-@Preview("Dark Theme", widthDp = 360, heightDp = 640)
-@Composable
-fun DarkPreview() {
-    MyTheme(darkTheme = true) {
-        MyApp()
     }
 }
