@@ -16,8 +16,8 @@
 package com.example.androiddevchallenge
 
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.ui.graphics.toArgb
 import androidx.navigation.NavType
@@ -31,7 +31,7 @@ import com.example.androiddevchallenge.ui.catInfo.CatDetail
 import com.example.androiddevchallenge.ui.cats.AllCats
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
