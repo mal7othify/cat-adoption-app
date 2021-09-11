@@ -18,31 +18,91 @@ package com.example.androiddevchallenge
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.ui.graphics.toArgb
 import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
-import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.model.data.Cats
 import com.example.androiddevchallenge.navigation.Screen
 import com.example.androiddevchallenge.ui.catInfo.CatDetail
 import com.example.androiddevchallenge.ui.cats.AllCats
 import com.example.androiddevchallenge.ui.theme.MyTheme
+import com.google.accompanist.navigation.animation.AnimatedNavHost
+import com.google.accompanist.navigation.animation.composable
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MyTheme {
                 window.statusBarColor = colors.primaryVariant.toArgb()
-                val navController = rememberNavController()
-                NavHost(navController, startDestination = Screen.AllCats.route) {
-                    composable(Screen.AllCats.route) { AllCats(Cats, navController) }
+                val navController = rememberAnimatedNavController()
+
+                val enterTransition = slideInHorizontally(
+                    initialOffsetX = { 300 },
+                    animationSpec = tween(300)
+                ) + fadeIn(animationSpec = tween(300))
+
+                val exitTransition = slideOutHorizontally(
+                    targetOffsetX = { -300 },
+                    animationSpec = tween(300)
+                ) + fadeOut(animationSpec = tween(300))
+
+                val initialPopEnterTransition = slideInHorizontally(
+                    initialOffsetX = { -300 },
+                    animationSpec = tween(300)
+                ) + fadeIn(animationSpec = tween(300))
+
+                val targetPopEnterTransition = slideOutHorizontally(
+                    targetOffsetX = { 300 },
+                    animationSpec = tween(300)
+                ) + fadeOut(animationSpec = tween(300))
+
+                AnimatedNavHost(navController, startDestination = Screen.AllCats.route) {
                     composable(
-                        "${Screen.CatDetail.route}/{catId}",
-                        arguments = listOf(navArgument("catId") { type = NavType.IntType })
+                        route = Screen.AllCats.route,
+                        enterTransition = { initial, _ ->
+                            when (initial.destination.route) {
+                                Screen.CatDetail.route -> enterTransition
+                                else -> null
+                            }
+                        },
+                        exitTransition = { _, target ->
+                            when (target.destination.route) {
+                                Screen.CatDetail.route -> exitTransition
+                                else -> null
+                            }
+                        },
+                        popEnterTransition = { initial, _ ->
+                            when (initial.destination.route) {
+                                Screen.CatDetail.route -> initialPopEnterTransition
+                                else -> null
+                            }
+                        }
+                    ) { AllCats(Cats, navController) }
+                    composable(
+                        route = "${Screen.CatDetail.route}/{catId}",
+                        arguments = listOf(navArgument("catId") { type = NavType.IntType }),
+                        enterTransition = { initial, _ ->
+                            when (initial.destination.route) {
+                                Screen.AllCats.route -> enterTransition
+                                else -> null
+                            }
+                        },
+                        exitTransition = { _, target ->
+                            when (target.destination.route) {
+                                Screen.AllCats.route -> targetPopEnterTransition
+                                else -> null
+                            }
+                        }
                     ) {
                         CatDetail(navController, it.arguments?.getInt("catId") ?: 1)
                     }
