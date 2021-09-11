@@ -33,8 +33,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -46,7 +48,7 @@ import com.example.androiddevchallenge.model.Cat
 
 @Composable
 fun CatDetailHeader(cat: Cat, navController: NavController) {
-    val starred = remember { mutableStateOf(Color.DarkGray) }
+    var starred by remember { mutableStateOf(false) }
     Box {
         Image(
             painter = painterResource(id = cat.imageRes),
@@ -61,7 +63,8 @@ fun CatDetailHeader(cat: Cat, navController: NavController) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .background(Color(0xB3c5cae9))
         ) {
             Icon(
@@ -90,9 +93,9 @@ fun CatDetailHeader(cat: Cat, navController: NavController) {
                     .align(Alignment.Bottom)
                     .size(24.dp, 24.dp)
                     .clickable {
-                        starred.value = Color.Yellow
+                        starred = !starred
                     },
-                tint = starred.value
+                tint = if (starred) Color.Yellow else Color.DarkGray
             )
         }
     }
