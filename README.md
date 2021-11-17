@@ -4,7 +4,7 @@
 
 ## :scroll: Description
 
-This is an adoption app which displays a list of availabe cats and their corresponding information
+This is an adoption app which displays a list of available cats and their corresponding information
 for adopters.
 
 #### Tools:
