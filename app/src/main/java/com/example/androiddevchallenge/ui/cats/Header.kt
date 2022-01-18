@@ -38,14 +38,17 @@ fun Header() {
         Text(
             "Make a new friend",
             style = MaterialTheme.typography.h1,
-            modifier = Modifier.padding(start = 45.dp, top = 20.dp)
+            modifier = Modifier
+                .padding(start = 45.dp, top = 20.dp)
                 .align(Alignment.CenterStart)
         )
         Image(
             imageVector = ImageVector.vectorResource(R.drawable.ic_baseline_bubble_chart_24),
             contentDescription = null,
             colorFilter = ColorFilter.tint(MaterialTheme.colors.primary),
-            modifier = Modifier.padding(start = 15.dp).align(Alignment.BottomStart)
+            modifier = Modifier
+                .padding(start = 15.dp)
+                .align(Alignment.BottomStart)
         )
     }
 

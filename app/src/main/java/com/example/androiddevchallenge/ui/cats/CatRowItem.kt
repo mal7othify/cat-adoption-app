@@ -41,7 +41,8 @@ fun CatRowItem(
     onItemClicked: (cat: Cat) -> Unit
 ) {
     Card(
-        modifier = Modifier.padding(PaddingValues(8.dp))
+        modifier = Modifier
+            .padding(PaddingValues(8.dp))
             .fillMaxWidth()
             .clickable(onClick = { onItemClicked(cat) }),
         shape = MaterialTheme.shapes.medium,

@@ -62,7 +62,8 @@ fun CatDetailFooter() {
                 .clickable {}
         )
         Button(
-            modifier = Modifier.requiredWidth(280.dp)
+            modifier = Modifier
+                .requiredWidth(280.dp)
                 .padding(8.dp),
             shape = shapes.small,
             onClick = {}

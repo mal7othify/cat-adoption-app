@@ -34,7 +34,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun CatDetailShips(title: String, body: String) {
     Card(
-        modifier = Modifier.padding(PaddingValues(10.dp))
+        modifier = Modifier
+            .padding(PaddingValues(10.dp))
             .requiredWidth(80.dp)
             .requiredHeight(60.dp),
         shape = MaterialTheme.shapes.small,

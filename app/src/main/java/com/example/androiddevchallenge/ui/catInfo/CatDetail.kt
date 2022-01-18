@@ -41,12 +41,13 @@ fun CatDetail(
             Text(
                 text = cat.name,
                 style = MaterialTheme.typography.h3,
-                modifier = Modifier.fillMaxWidth().padding(bottom = 20.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 20.dp)
             )
             Row(
                 horizontalArrangement = Arrangement.SpaceEvenly,
-                modifier = Modifier.padding(bottom = 20.dp)
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
             ) {
                 CatDetailShips("Breed", cat.breed)
                 CatDetailShips("Age", cat.age)
