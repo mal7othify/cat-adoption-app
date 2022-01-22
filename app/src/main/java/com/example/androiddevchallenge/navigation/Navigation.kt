@@ -16,6 +16,6 @@
 package com.example.androiddevchallenge.navigation
 
 sealed class Screen(val route: String) {
-    object AllCats: Screen("allCats")
-    object CatDetail: Screen("catDetail")
+    object AllCats : Screen("allCats")
+    object CatDetail : Screen("catDetail")
 }
