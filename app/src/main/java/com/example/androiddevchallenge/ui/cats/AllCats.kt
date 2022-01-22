@@ -27,8 +27,8 @@ import com.example.androiddevchallenge.model.Cat
 
 @Composable
 fun AllCats(
-    catList: List<Cat>,
-    navController: NavController
+    catList : List<Cat>,
+    navController : NavController
 ) {
     LazyColumn(
         Modifier.fillMaxWidth(),
@@ -37,15 +37,13 @@ fun AllCats(
         item {
             Header()
         }
-        items(catList) {
-            catList.forEach { cat ->
-                CatRowItem(
-                    cat,
-                    onItemClicked = {
-                        navController.navigate("catDetail/${cat.id}")
-                    }
-                )
-            }
+        items(catList) { cat ->
+            CatRowItem(
+                cat,
+                onItemClicked = {
+                    navController.navigate("catDetail/${cat.id}")
+                }
+            )
         }
     }
 }
